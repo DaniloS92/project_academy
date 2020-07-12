@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'description_place.dart';
+import 'review_list.dart';
+import 'gradient_back.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,6 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -30,10 +35,21 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("App de prueba"),
+//        appBar: AppBar(
+//          title: Text("App de prueba"),
+//        ),
+//        body: new DescriptionPlace("Danilo Sanchez", 4, lorem),
+        body: Stack(
+          children: <Widget>[
+            ListView(
+              children: <Widget>[
+                DescriptionPlace("Danilo Sanchez", 4, lorem),
+                ReviewList()
+              ],
+            ),
+            GradientBack("Popular")
+          ],
         ),
-        body: new DescriptionPlace("Danilo Sanchez", 4, lorem),
       ),
     );
   }
